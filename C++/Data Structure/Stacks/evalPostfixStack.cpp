@@ -12,6 +12,28 @@ class Stack
 	int* array; 
 }; 
 
+Stack * resize(Stack* stack)
+{
+	int added_capacity=0;
+	cout<<"";
+	cin>>added_capacity;
+	
+	Stack* Updated_stack=createStack(stack.capacity+added_capacity);
+	Stack* temp=createStack(stack.capacity);
+	while(isEmpty(stack)==0)
+	{
+		push(temp,pop(stack));	
+	}
+
+	while(isEmpty(temp)==0)
+	{
+		push(Updated_stack,pop(temp));	
+	}
+	
+	return Updated_stack;
+}
+
+
 // Stack Operations 
 Stack* createStack( unsigned capacity ) 
 { 
@@ -100,7 +122,8 @@ int evaluatePostfix(char* exp)
 			case '-': push(stack, val2 - val1); break; 
 			case '*': push(stack, val2 * val1); break; 
 			case '/': push(stack, val2/val1); break; 
-			
+			case '%' : push(stack,val2%val1);break;
+			case '^' : push(stack,pow(val2,val1));break;
 			} 
 		} 
 	} 
